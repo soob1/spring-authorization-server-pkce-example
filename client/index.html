@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>PKCE Client</title></head>
+<body>
+<h1>PKCE Client</h1>
+<button id="login">Login (Authorization Code + PKCE)</button>
+<pre id="out"></pre>
+
+<script type="module">
+    import { createPkcePair, authorize } from "./pkce.js";
+
+    const out = document.getElementById("out");
+    document.getElementById("login").onclick = async () => {
+        const { verifier, challenge } = await createPkcePair();
+        const state = crypto.randomUUID();
+
+        sessionStorage.setItem("pkce_verifier", verifier);
+        sessionStorage.setItem("oauth_state", state);
+
+        out.textContent = [
+            "verifier saved to sessionStorage",
+            "challenge: " + challenge,
+            "state: " + state
+        ].join("\n");
+
+        authorize({ challenge, state });
+    };
+</script>
+</body>
+</html>
