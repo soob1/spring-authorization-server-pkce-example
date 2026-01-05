@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.RequestCacheConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -36,7 +35,6 @@ public class SecurityConfig {
 								new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
 						)
 				)
-				.requestCache(RequestCacheConfigurer::disable)
 				.cors(Customizer.withDefaults());
 
 		return http.build();
@@ -58,7 +56,7 @@ public class SecurityConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(List.of("http://127.0.0.1:8080", "http://localhost:8080"));
+		config.setAllowedOrigins(List.of("http://localhost:8080"));
 		config.setAllowedMethods(List.of("GET", "POST"));
 		config.setAllowedHeaders(List.of("*"));
 		config.setAllowCredentials(true);

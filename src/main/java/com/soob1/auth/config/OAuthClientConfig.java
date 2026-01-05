@@ -21,7 +21,7 @@ public class OAuthClientConfig {
 				.clientId("public-client")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.redirectUri("http://127.0.0.1:8080/callback")
+				.redirectUri("http://localhost:8080/callback")
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
 				.clientSettings(ClientSettings.builder()

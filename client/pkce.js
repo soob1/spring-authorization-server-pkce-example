@@ -1,6 +1,6 @@
 const AS_BASE = "http://localhost:9000";
 const CLIENT_ID = "public-client";
-const REDIRECT_URI = "http://127.0.0.1:8080/callback";
+const REDIRECT_URI = "http://localhost:8080/callback";
 const SCOPE = "openid profile";
 
 function base64UrlEncode(bytes) {
